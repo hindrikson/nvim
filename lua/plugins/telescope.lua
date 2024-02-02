@@ -98,7 +98,7 @@ return {
             -- for vim wiki directories
             vim.keymap.set('n', '<leader>dt', function()
                 require('telescope.builtin').find_files({
-                    cwd="~/.dotfiles/.config/nvim",
+                    cwd="~/all/repos/nvim",
                 })
             end)
             vim.keymap.set('n', '<leader>wi', function()
