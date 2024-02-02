@@ -1,0 +1,61 @@
+--local rest_nvim = require("rest-nvim")
+
+--require("rest-nvim").setup({
+--  -- Open request results in a horizontal split
+--  result_split_horizontal = false,
+--  -- Keep the http file buffer above|left when split horizontal|vertical
+--  result_split_in_place = false,
+--  -- Skip SSL verification, useful for unknown certificates
+--  skip_ssl_verification = false,
+--  -- Encode URL before making request
+--  encode_url = false,
+--  -- Highlight request on run
+--  highlight = {
+--    enabled = true,
+--    timeout = 150,
+--  },
+--  headers = {
+--      ["Content-Type"] = "application/x-www-form-urlencoded", -- Set your custom content type
+--  },
+
+--  result = {
+--    -- toggle showing URL, HTTP info, headers at top the of result window
+--    show_url = true,
+--    -- show the generated curl command in case you want to launch
+--    -- the same request via the terminal (can be verbose)
+--    show_curl_command = true,
+--    -- display all parameters in culr command also
+--    -- those specific to rest.nvim (e.g. timeout)
+--    show_all_curl_params = false,
+--    --
+--    show_http_info = true,
+--    show_headers = true,
+--    -- executables or functions for formatting response body [optional]
+--    -- set them to false if you want to disable them
+--    formatters = {
+--      json = "jq",
+--      html = function(body)
+--        return vim.fn.system({"tidy", "-i", "-q", "-"}, body)
+--      end
+--    },
+--  },
+--  -- Jump to request line on run
+--  jump_to_request = false,
+--  env_file = '.env',
+--  custom_dynamic_variables = {},
+--  yank_dry_run = true,
+
+--})
+
+---- -- Create a keymap for using rest.nvim_quickload
+---- vim.api.nvim_create_autocmd("FileType", {
+----     pattern = "http",
+----     callback = function()
+----         local buff  = tonumber(vim.fn.expand("<abuf>"), 10)
+----         vim.keymap.set("n", "<leader>tt", rest_nvim.run, {
+----             silent = true,
+----             noremap = true,
+----         })
+----     end,
+---- })
+--vim.keymap.set('n', '<leader>tt', '<Plug>RestNvim', { desc = 'execute request' })
