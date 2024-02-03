@@ -3,7 +3,6 @@ return {
         'nvim-telescope/telescope.nvim', tag = '0.1.5',
         -- or                              , branch = '0.1.x',
         dependencies = { 'nvim-lua/plenary.nvim' },
-
         config = function()
             require('telescope').setup{
                 defaults = {
@@ -13,7 +12,7 @@ return {
                     layout_config = {
                         prompt_position = "top",
                         height = 0.75,
-                        preview_width = 0.50,
+                        width = 0.75,
                     },
                     -- Default configuration for telescope goes here:
                     -- config_key = value,
