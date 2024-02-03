@@ -27,7 +27,7 @@ vim.opt.undofile = true
 vim.opt.swapfile = false
 vim.opt.writebackup = false
 vim.opt.wrap = false
-vim.g.termguicolors = false
+vim.g.termguicolors = true
 
 -- opens files from netrw in a previous window
 -- vim.g.netrw_browse_split = 4
