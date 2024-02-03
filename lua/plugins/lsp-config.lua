@@ -1,6 +1,6 @@
 local servers = {
     tsserver = {
-        filetypes = {"javascriipt"}
+        filetypes = {"javascript"}
     },
     pyright = {},
     ruff = {},
