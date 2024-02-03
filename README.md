@@ -23,6 +23,8 @@ When using the **debugger** make sure to disable conda environment, or specify t
 python binary of the current environment you are using by inserting the right
 path on the setup function of dap-python in the debugger.lua file.
 
-## Problems
-* ensure_install on mason lspconfig [may](may) not work, so install the servers
-  manually via ":Mason".
+## Note
+* mason-lspconfig "ensure_installed" does not map all the servers that can be installed. The following servers have to be installed manually via :Mason.
+    - debugpy
+    - mypy
+    - black

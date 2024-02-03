@@ -1,11 +1,13 @@
+-- List of server that can are not mapped to mason-lspconfig ans should be installed manually
+-- debugpy
+-- mypy
+-- black
+
+
 local servers = {
-    tsserver = {
-        filetypes = {"javascript"}
-    },
-    pyright = {},
-    ruff = {},
-    black = {},
-    mypy = {},
+    tsserver = {},
+--     pyright = {},
+    ruff_lsp = {},
     lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },
@@ -21,11 +23,11 @@ local servers = {
     },
     ltex = {
         filetypes = {"tex", "markdown"}
-    }
+    },
 
 }
 
-local on_attach = function(_, bufnr)
+local attach = function(_, bufnr)
     print("Lsp Attached.")
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
@@ -68,51 +70,39 @@ local on_attach = function(_, bufnr)
 
 end
 
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 return {
-
-    {
+    "neovim/nvim-lspconfig",
+    dependencies = {
         "williamboman/mason.nvim",
-        config = function()
-            require("mason").setup()
-        end
-    },
-
-    {
         "williamboman/mason-lspconfig.nvim",
-        dependencies = {
-            "williamboman/mason.nvim",
-        },
+        'hrsh7th/cmp-nvim-lsp',
+    },
 
-        config = function()
-            local mason_lspconfig = require("mason-lspconfig")
-            mason_lspconfig.setup({
-                ensure_install = vim.tbl_keys(servers),
-            })
-            mason_lspconfig.setup_handlers({
-                function(server_name)
-                    require('lspconfig')[server_name].setup {
-                        capabilities = capabilities,
-                        on_attach = on_attach,
-                        settings = servers[server_name],
-                    }
-                end
-            })
-        end
-    },
-    {
-        "neovim/nvim-lspconfig",
-        config = function()
-            local capabilities = require('cmp_nvim_lsp').default_capabilities()
-            local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({})
-            lspconfig.grammarly.setup({
-                ft = {"md", "tex"}
-            })
-            -- lspconfig.pyright.setup({})
-        end
-    },
-}
+    config = function()
+        -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+        require("mason").setup()
+        require("mason-lspconfig").setup({
+            ensure_installed = vim.tbl_keys(servers),
+        })
+        require("mason-lspconfig").setup_handlers {
+            -- The first entry (without a key) will be the default handler
+            -- and will be called for each installed server that doesn't have
+            -- a dedicated handler.
+            function (server_name) -- default handler (optional)
+                require("lspconfig")[server_name].setup {
+                    on_attach = attach,
+                    capabilities = capabilities,
+                }
+
+            end,
+            -- Next, you can provide a dedicated handler for specific servers.
+            -- For example, a handler override for the `rust_analyzer`:
+            -- ["rust_analyzer"] = function ()
+            --     require("rust-tools").setup {}
+            -- end
+        }
+    end
+    }
