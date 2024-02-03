@@ -95,6 +95,7 @@ return {
                 require("lspconfig")[server_name].setup {
                     on_attach = attach,
                     capabilities = capabilities,
+                    settings = servers[server_name],
                 }
 
             end,
