@@ -3,7 +3,6 @@
 -- mypy
 -- black
 
-
 local servers = {
     tsserver = {},
 --     pyright = {},
@@ -13,7 +12,7 @@ local servers = {
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
             diagnostics = {
-                -- globals = {"vim"}
+                globals = {"vim"}
             }
         },
     },
