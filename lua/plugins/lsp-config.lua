@@ -6,7 +6,6 @@
 local servers = {
     tsserver = {},
     --     pyright = {},
-    ruff_lsp = {},
     lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },
@@ -23,6 +22,7 @@ local servers = {
     ltex = {
         filetypes = { "tex", "markdown" }
     },
+    pyright = {}
 
 }
 
@@ -32,7 +32,6 @@ local servers = {
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
-        print("Lsp Attached.")
         -- Enable completion triggered by <c-x><c-o>. Not using it because autocompletion is way better
         -- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
         local nmap = function(keys, func, desc)

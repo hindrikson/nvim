@@ -17,16 +17,18 @@ return {
                 group_empty = true,
             },
             filters = {
-                dotfiles = true,
+                dotfiles = false,
             },
-            update_cwd = true,
-            update_focused_file = {
-                enable = true,
-                update_cwd = true,
+            trash = {
+                cmd = "trash-put",
             },
+            git = {
+                enable = false, 
+             },
         }
         -- vim.g.nvim_tree_respect_buf_cwd = 1
 		vim.keymap.set('n', '<leader>m', ':NvimTreeToggle<CR>', {})
+        vim.keymap.set("n", "<leader>c", ":NvimTreeOpen %:p:h<cr>", {silent = true, noremap = true})
 	end,
 }
 
