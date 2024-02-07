@@ -139,7 +139,9 @@ return {
                 require("lspconfig")[server_name].setup {
                     -- on_attach = attach, -- Defined on LspAttach
                     capabilities = capabilities,
-                    settings = servers[server_name],
+                    -- if server_name is in server, set the setting
+                    -- if not, set the default setting
+                    settings = servers[server_name] or {}
                 }
             end,
             -- Next, you can provide a dedicated handler for specific servers.
