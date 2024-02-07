@@ -1,7 +1,13 @@
 return {
     "lervag/vimtex",
     config = function()
-        vim.g.vimtex_view_method = 'zathura'
+        -- for linux
+        -- vim.g.vimtex_view_method = 'zathura' -- SumatraPDF for windows
+        -- for windows
+        vim.g.vimtex_view_general_viewer = '~/.local/bin/sumatrapdf.sh' -- SumatraPDF for windows
+        vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+
+
         vim.g.vimtex_compiler_method = 'latexmk'
         vim.g.vimtex_compiler_latexmk = {
             -- build_dir = 'build',
@@ -21,7 +27,7 @@ return {
             },
         }
         vim.g.vimtex_compiler_latexmk_engines = {
-            _ = '-lualatex',
+            _ = '-xelatex',
             -- pdflatex = '-pdf',
             lualatex = '-lualatex',
             xelatex = '-xelatex',
