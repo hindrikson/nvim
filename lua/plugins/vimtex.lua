@@ -2,10 +2,10 @@ return {
     "lervag/vimtex",
     config = function()
         -- for linux
-        -- vim.g.vimtex_view_method = 'zathura' -- SumatraPDF for windows
+        vim.g.vimtex_view_method = 'zathura' -- SumatraPDF for windows
         -- for windows
-        vim.g.vimtex_view_general_viewer = '~/.local/bin/sumatrapdf.sh' -- SumatraPDF for windows
-        vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+        -- vim.g.vimtex_view_general_viewer = '~/.local/bin/sumatrapdf.sh' -- SumatraPDF for windows
+        -- vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
 
 
         vim.g.vimtex_compiler_method = 'latexmk'
