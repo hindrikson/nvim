@@ -3,12 +3,18 @@
 This neovim config has a lot functionalities while keeping minimal. You can
 check them all in the plugins directory.
 
-To use vimtex on windows from a wsl: you have to install SumatraPDF
+To use vimtex on windows from a wsl: you have to install SumatraPDF on windows
 1. install SumatraPDF
-2. Copy the sumatrapdf.sh file from https://github.com/lervag/vimtex/issues/2566#issuecomment-1322886643 
-   into you ~/.local/bin folder
-3. Remember to make it executable with chomod +x
-4. Adjust the vimtex.lua file as indicated
+2. Add sumatrapdf.exe to your WINDOWS path so it can be called from wsl
+   console.
+3. Copy the sumatrapdf.sh file from
+   https://github.com/lervag/vimtex/issues/2566#issuecomment-1322886643 into
+   /usr/local/bin directory in your wsl.
+4. Remember to make it executable with chomod +x, and to make sure the
+   /usr/local/bin is in your wsl path by adding it to your bashrc or zshrc.
+5. In your wsl home directory, add a ".wsl_flag" file to your home directory ("touch .wsl_flag")
+6. The script in vimtex.lua is going to check if you are on a wsl or on a
+   normal linux and set the according options.
 
 
 ## Keymaps 

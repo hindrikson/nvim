@@ -1,12 +1,23 @@
 return {
     "lervag/vimtex",
     config = function()
-        -- for linux
-        vim.g.vimtex_view_method = 'zathura' -- SumatraPDF for windows
-        -- for windows
-        -- vim.g.vimtex_view_general_viewer = '~/.local/bin/sumatrapdf.sh' -- SumatraPDF for windows
-        -- vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
 
+        local function is_wsl()
+            local wsl_flag = vim.fn.glob('~/.wsl_flag')
+            if wsl_flag == '' then
+                -- for linux
+                vim.g.vimtex_view_method = 'zathura' -- For linux
+                print("Vimtex for Linux")
+                return true
+            else
+                -- for windows
+                vim.g.vimtex_view_general_viewer = 'sumatrapdf.sh' -- For windows
+                vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+                print("Vimtex for Wsl")
+            end
+        end
+
+        is_wsl()
 
         vim.g.vimtex_compiler_method = 'latexmk'
         vim.g.vimtex_compiler_latexmk = {
@@ -16,10 +27,10 @@ return {
             -- executable = 'latexmk',
             -- hooks = {},
             options = {
-                -- '-verbose',
-                -- '-file-line-error',
-                -- '-synctex=1',
-                -- '-interaction=nonstopmode',
+                '-verbose',
+                '-file-line-error',
+                '-synctex=1',
+                '-interaction=nonstopmode',
                 '-auxdir=aux-directory',
                 '-emulate-aux-dir',
                 -- '-outdir=build',
@@ -27,7 +38,7 @@ return {
             },
         }
         vim.g.vimtex_compiler_latexmk_engines = {
-            _ = '-xelatex',
+            _ = '-lualatex',
             -- pdflatex = '-pdf',
             lualatex = '-lualatex',
             xelatex = '-xelatex',
