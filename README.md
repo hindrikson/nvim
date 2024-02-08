@@ -31,7 +31,7 @@ To start copilot run ":Copilot auth signin" and follow the instructions.
 
 On vimwiki.lua you should specify the paths for your own vimwiki directories.
 
-Since I am using lazygit, I am not adding fugitive or gitsigns.
+Since I am using lazygit, I am not adding fugitive.
 
 When using the **debugger** make sure to disable conda environment, or specify the
 python binary of the current environment you are using by inserting the right
@@ -43,5 +43,3 @@ path on the setup function of dap-python in the debugger.lua file.
     - mypy
     - black
 
-## vimtex not working from wsl with sumatra
-Check this https://github.com/lervag/vimtex/issues/1585
