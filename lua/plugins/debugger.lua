@@ -5,7 +5,7 @@ return {
     },
     {
         "rcarriga/nvim-dap-ui",
-        dependencies = {"mfussenegger/nvim-dap" },
+        dependencies = { "mfussenegger/nvim-dap" },
     },
     {
         "mfussenegger/nvim-dap",
@@ -15,7 +15,8 @@ return {
             vim.keymap.set('n', '<F7>', function() require('dap').step_into() end)
             vim.keymap.set('n', '<F10>', function() require('dap').step_out() end)
             vim.keymap.set('n', '<leader>b', function() require('dap').toggle_breakpoint() end)
-            vim.keymap.set('n', '<leader>B', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
+            vim.keymap.set('n', '<leader>B',
+                function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
             vim.keymap.set('n', '<leader>dc', function() require('dapui').close() end)
             vim.keymap.set('n', '<leader>do', function() require('dapui').open() end)
             -- vim.api.nvim_create_user_command('Cdapui',function()
@@ -46,7 +47,19 @@ return {
             "rcarriga/nvim-dap-ui"
         },
         config = function()
-            require('dap-python').setup('~/.local/share/nvim/mason/packages/debugpy/venv/bin/python3')
+            local function is_cluster()
+                local wsl_flag = vim.fn.glob('~/.cluster_flag')
+                if wsl_flag == '' then
+                    require('dap-python').setup('~/.local/share/nvim/mason/packages/debugpy/venv/bin/python3')
+                    print("Mason python binary")
+                else
+                    require('dap-python').setup('/mnt/home/rmiranda/.conda/envs/dl/bin/python3')
+                    print("Conda python binary")
+                end
+            end
+
+            is_cluster()
+
             -- vim.keymap.set('n', '<leader>pr', function() require('dap-python').test_method() end)
         end,
     }

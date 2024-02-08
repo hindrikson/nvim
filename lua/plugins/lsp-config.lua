@@ -64,9 +64,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- replace the command below to trouble xx
         vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { buffer = ev.buf })
         -- the mapping below allows to check the arguments of the function while editing it
-        vim.keymap.set('i', '<C-s>', function() vim.lsp.buf.signature_help() end, { buffer = ev.buf })
+        vim.keymap.set('i', '<C-j>', function() vim.lsp.buf.signature_help() end, { buffer = ev.buf })
         -- vim formater
         vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, { buffer = ev.buf })
+
     end,
 })
 
