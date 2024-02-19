@@ -1,4 +1,4 @@
 return {
-    "luk400/vim-jukit",
-    ft = {"python", "ipynb"},
+    -- "luk400/vim-jukit",
+    -- ft = {"python", "ipynb"},
 }
