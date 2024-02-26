@@ -67,7 +67,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('i', '<C-j>', function() vim.lsp.buf.signature_help() end, { buffer = ev.buf })
         -- vim formater
         vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, { buffer = ev.buf })
-
     end,
 })
 
