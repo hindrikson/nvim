@@ -43,3 +43,5 @@ path on the setup function of dap-python in the debugger.lua file.
     - mypy
     - black
 
+* on after/ftplugin you can specify filetyper specific settings.
+

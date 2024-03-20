@@ -11,6 +11,9 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 -- vim.opt.cindent = {true, cinkeys = {'-','=', '0', '#'}}
 vim.opt.cursorline = true
+-- set cursor line option
+vim.opt.cursorlineopt = "both"
+
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.updatetime = 50

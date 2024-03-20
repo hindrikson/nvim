@@ -8,11 +8,6 @@ return {
         "rose-pine/neovim",
         name = "rose-pine",
         priority = 1000,
-        filetypes = {"markdown"},
-        config = function()
-            vim.g.rose_pine_variant = "moon"
-            vim.cmd.colorscheme "rose-pine-moon"
-        end
     },
     {
         "folke/tokyonight.nvim",
