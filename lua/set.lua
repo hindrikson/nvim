@@ -32,6 +32,11 @@ vim.opt.writebackup = false
 vim.opt.wrap = false
 vim.g.termguicolors = true
 
+-- Sets colors to line numbers Above, Current and Below  in this order
+vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#51B3EC', bold=true })
+vim.api.nvim_set_hl(0, 'LineNr', { fg='white', bold=true })
+vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#FB508F', bold=true })
+
 -- opens files from netrw in a previous window
 -- vim.g.netrw_browse_split = 4
 -- set width of 25% of current window width
