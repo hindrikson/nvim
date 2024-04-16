@@ -22,7 +22,8 @@ local servers = {
     ltex = {
         filetypes = { "tex", "markdown" }
     },
-    pyright = {}
+    pyright = {},
+    vue_language_server = {}
 
 }
 
@@ -131,6 +132,10 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = vim.tbl_keys(servers),
         })
+        require'lspconfig'.volar.setup{
+          filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+        }
+
         require("mason-lspconfig").setup_handlers {
             -- The first entry (without a key) will be the default handler
             -- and will be called for each installed server that doesn't have
