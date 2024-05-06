@@ -4,7 +4,28 @@
 -- black
 
 local servers = {
-    tsserver = {},
+    -- tsserver = {
+    --       init_options = {
+    --         plugins = {
+    --           {
+    --             name = "@vue/typescript-plugin",
+    --             location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+    --             languages = {"javascript", "typescript", "vue"},
+    --           },
+    --         },
+    --       },
+    --       filetypes = {
+    --         "javascript",
+    --         "typescript",
+    --         "vue",
+    --       },
+    -- },
+    -- volar = {
+    --     filetypes = {
+    --         "vue",
+    --         "typescript",
+    --     },
+    -- },
     --     pyright = {},
     lua_ls = {
         Lua = {
@@ -19,11 +40,16 @@ local servers = {
         filetypes = { "md", "tex" },
 
     },
-    ltex = {
-        filetypes = { "tex", "markdown" }
-    },
+    -- ltex = {
+    --     filetypes = { "tex", "markdown" },
+    --     ltex = {
+    --         language = "en",
+    --         -- additionalRules = {
+    --         --     languageModel = "~/models/ngrams/",
+    --         -- },
+    --     },
+    -- },
     pyright = {},
-    vue_language_server = {}
 
 }
 
@@ -53,7 +79,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
         -- See `:help K` for why this keymap
         nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-        nmap('<C-K>', vim.lsp.buf.signature_help, 'Signature Documentation')
+        nmap('<C-s>', vim.lsp.buf.signature_help, 'Signature Documentation')
         -- Lesser used LSP functionality
         nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
         nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
@@ -132,9 +158,44 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = vim.tbl_keys(servers),
         })
+
         require'lspconfig'.volar.setup{
-          filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+            init_options = {
+                typescript = {
+                    tsdk = '/home/ruda/.nvm/versions/node/v18.16.1/lib/node_modules/typescript/lib'
+                    -- Alternative location if installed as root:
+                    -- tsdk = '/usr/local/lib/node_modules/typescript/lib'
+                }
+            },
+            filetypes = {
+                "vue",
+            },
         }
+        require'lspconfig'.ltex.setup{
+            cmd = { "ltex-ls" },
+            filetypes = { "tex", "markdown" },
+            -- add the path to the ltex-ls binary
+
+        }
+
+        require'lspconfig'.tsserver.setup{
+          init_options = {
+            plugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = "/home/ruda/.nvm/versions/node/v18.16.1/lib/node_modules/@vue/typescript-plugin",
+                languages = {"javascript", "typescript", "vue"},
+              },
+            },
+          },
+          filetypes = {
+            "javascript",
+            "typescript",
+            "vue",
+          },
+        }
+
+
 
         require("mason-lspconfig").setup_handlers {
             -- The first entry (without a key) will be the default handler
@@ -151,9 +212,10 @@ return {
             end,
             -- Next, you can provide a dedicated handler for specific servers.
             -- For example, a handler override for the `rust_analyzer`:
-            -- ["rust_analyzer"] = function ()
+             -- ["rust_analyzer"] = function ()
             --     require("rust-tools").setup {}
             -- end
+         
         }
     end
 }

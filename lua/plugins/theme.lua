@@ -1,9 +1,9 @@
 return {
-    -- {"catppuccin/nvim",
-    --     lazy = false,
-    --     name = "catpuccin",
-    --     priority = 1000,
-    -- },
+    {"catppuccin/nvim",
+        lazy = false,
+        name = "catppuccin",
+        priority = 1000,
+    },
     {
         "rose-pine/neovim",
         name = "rose-pine",
@@ -15,9 +15,10 @@ return {
         priority = 1000,
         opts = {},
         config = function()
-            vim.cmd.colorscheme "tokyonight-night"
+            vim.cmd.colorscheme "tokyonight-night" -- tokyonight-night, tokyonight-storm, tokyonight-day
         end
-    }
+    },
+
 
 
 }
