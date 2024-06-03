@@ -18,6 +18,11 @@ return {
                     syntax = 'markdown',
                     ext = '.md',
                 },
+                {
+                    path = '~/all/repos/linear_algebra',
+                    syntax = 'markdown',
+                    ext = '.md',
+                },
             },
         }
 
