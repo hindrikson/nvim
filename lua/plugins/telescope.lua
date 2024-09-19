@@ -49,7 +49,7 @@ return {
                     },
                     grep_string = {
                         layout_config = {
-                            preview_width = 0.75,
+                            preview_width = 0.50,
                             -- theme = "dropdown"
                         }
                     },

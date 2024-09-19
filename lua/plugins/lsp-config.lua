@@ -174,6 +174,7 @@ return {
         require'lspconfig'.ltex.setup{
             cmd = { "ltex-ls" },
             filetypes = { "tex", "markdown" },
+            languages = {"en-US"}
             -- add the path to the ltex-ls binary
 
         }
